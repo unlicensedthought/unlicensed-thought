@@ -3,6 +3,7 @@ title: A commit gate you can watch fail
 summary: Three commit-time gates (secrets, private terms, tokens in git URLs) published with the evidence that each one blocks bad input, including the false positive that read SVG coordinates as phone numbers.
 date: 2026-11-18
 tags: [guardrails, testing, git, go]
+draft: true
 ---
 
 A commit gate you've never seen fail is a guess. It prints "OK" on every run, and you can't tell a clean tree from a broken regex.
@@ -57,7 +58,7 @@ The mutants backed this up. Take away the separator check and the golden case fo
 
 ## One change I made while porting
 
-The token-URL gate prints the offending line. For a literal token in a URL, that echoes the credential into a terminal or a CI log, which is exactly what the gate exists to stop. The public version redacts the userinfo of any URL it prints. A test checks the value doesn't appear, and one mutant restores the old behaviour and is killed.
+The token-URL gate prints the offending line. For a literal token in a URL, that echoes the credential into a terminal or a CI log, which is exactly what the gate exists to stop. The public version doesn't print the line at all. A refusal names the file, the line number and the rule, and that's enough to find it. A test checks that no refused line shows up in the output, and a mutant that puts the line back is killed.
 
 ## What it doesn't do
 

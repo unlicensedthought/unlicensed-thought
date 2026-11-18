@@ -3,6 +3,7 @@ title: 80 Access apps and one wildcard
 summary: A Cloudflare Worker that provisions Zero Trust Access apps from a JSON config, never touches group membership, and audits the whole account for broad policies.
 date: 2026-11-18
 tags: [security, cloudflare, infrastructure, authorization]
+draft: true
 ---
 
 Doing it by hand in the dashboard got me about 80 Cloudflare Access apps that shared one `email_domain` wildcard, plus some stray emails. Then I wrote a Worker so I'd never build another one by hand, and the most useful thing in it turned out to be what it refuses to write.
