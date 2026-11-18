@@ -3,7 +3,6 @@ title: A commit gate you can watch fail
 summary: Three commit-time gates (secrets, private terms, tokens in git URLs) published with the evidence that each one blocks bad input, including the false positive that read SVG coordinates as phone numbers.
 date: 2026-11-18
 tags: [guardrails, testing, git, go]
-draft: true
 ---
 
 A commit gate you've never seen fail is a guess. It prints "OK" on every run, and you can't tell a clean tree from a broken regex.
@@ -24,7 +23,7 @@ In hook modes all three read what the commit contains, not the working tree. In 
 
 **Selftests.** Each gate has a `--selftest` that feeds it known-bad and known-good input and exits non-zero if either verdict is wrong. The token-URL selftest carries 22 known-bad and 15 known-good inline fixtures. The selftests exist because of an earlier scanner in my private repo. It built patterns with `\b` and fed them to `git grep -E`, and that regex engine has no `\b`. So the patterns matched nothing, and the scanner printed "clean" for its whole life. So the patterns matched nothing, and the scanner printed "clean" for its whole life.
 
-**Golden files.** The public repo has 37 end-to-end cases. Each one builds a throwaway git repository, stages a file, runs the real entry point and compares the exit code and output with a file on disk. One case stages a file with an AWS-shaped key id and expects exit 1 and a line naming the file, line number and rule. A neighbouring case stages a file that only carries `sha256` hash lines and expects exit 0. Three cases check exit code 2, "could not run": `leak` with no config, `leak` with an empty config, and `run` when one gate can't run. A gate with nothing to look for mustn't report a pass.
+**Golden files.** The public repo has 40 end-to-end cases. Each one builds a throwaway git repository, stages a file, runs the real entry point and compares the exit code and output with a file on disk. One case stages a file with an AWS-shaped key id and expects exit 1 and a line naming the file, line number and rule. A neighbouring case stages a file that only carries `sha256` hash lines and expects exit 0. Three cases check exit code 2, "could not run": `leak` with no config, `leak` with an empty config, and `run` when one gate can't run. A gate with nothing to look for mustn't report a pass.
 
 Credential-shaped fixtures in those tests are assembled at runtime, and the golden files hold only paths, line numbers and rule names.
 
@@ -32,7 +31,7 @@ Credential-shaped fixtures in those tests are assembled at runtime, and the gold
 
 The four misses are recorded as misses: nested command substitution, quotes inside the userinfo, a token literal split by adjacent quoting, and a header value produced by a command substitution so the word "authorization" never appears in the source. The selftest checks both directions. If a recorded catch stops being caught, that's a regression and it fails. If a recorded miss starts being caught, it fails too, until the corpus is updated in the same change. So the list of blind spots can't drift away from the code.
 
-**Mutants.** This is the part I added for the public repo. `scripts/mutants.json` lists 25 small breakages of the gate code, such as changing the AWS rule from 16 characters to 17, deleting the `\b` from the `sk-` rule, letting the `gate:allow-line` pragma hide a private term, or making `run` treat exit 2 as a pass. `scripts/mutants.sh` applies each one to a scratch copy and requires `go test ./...` to fail.
+**Mutants.** This is the part I added for the public repo. `scripts/mutants.json` lists 33 small breakages of the gate code, such as changing the AWS rule from 16 characters to 17, deleting the `\b` from the `sk-` rule, letting the `gate:allow-line` pragma hide a private term, or making `run` treat exit 2 as a pass. `scripts/mutants.sh` applies each one to a scratch copy and requires `go test ./...` to fail.
 
 ## What the mutants found
 
@@ -44,7 +43,7 @@ I ran them first against the tests I'd inherited. 21 of 25 were killed. Four sur
 
 I added a test for each. The second run killed 25 of 25.
 
-Don't read too much into that. These are 25 hand-picked edits, not a generated set. 25 of 25 means those 25 edits get noticed. It doesn't mean the gates are right.
+Don't read too much into that. These are hand-picked edits, not a generated set. 25 of 25 meant those 25 edits got noticed. It didn't mean the gates were right, and the next section is the proof.
 
 ## The false positive
 
@@ -55,6 +54,17 @@ The fix is a function, `phoneHit`, that applies the regex and then three guards.
 The regression test holds both sides in one place. Five inputs made of coordinates and decimals must not be flagged. Six real formats must still be flagged. A second test pins that the raw regex still matches the coordinates, so if someone simplifies the regex until it stops matching them, the guards are dead code and that test says so.
 
 The mutants backed this up. Take away the separator check and the golden case for an SVG file fails. Take away the guard against a longer dotted number, or against a trailing decimal, and the inherited tests still passed. That's how I learned those two guards had no test.
+
+## What a security review found after that
+
+Before publishing I ran a security review over the public copy. It found holes the mutants couldn't, because nobody had written a mutant for them:
+
+- **A path git reads as something else.** The gates read staged files by a git object name built from the path. A file named like `1:notes.txt` is read by git as "stage 1 of `notes.txt`", so the gate scanned a different blob from the one being committed. Staged files are now addressed by stage 0 explicitly, and a listed file that can't be read stops the run with exit 2 instead of being skipped.
+- **A private term leaking through the path.** The leak gate withheld a file's path when the path itself held a private term, but only on that one finding. Any other finding in the same file printed the path anyway. Now the path is withheld on every finding for that file.
+- **A repo config reaching outside the repo.** A repo's own leak config names its word list. A symlink could point that name at any file on the machine. The list must now resolve to a regular file inside the repo, capped at 1 MiB.
+- **Text that isn't UTF-8.** The secrets gate skipped any file that wasn't valid UTF-8, so a key in a Latin-1 file got through. Real binaries are still skipped. Other text is decoded with replacement characters and scanned.
+
+Each fix has a test I watched fail first, and a mutant that undoes it. That's where the other eight mutants come from. The set is 33 now, and all 33 are killed.
 
 ## One change I made while porting
 

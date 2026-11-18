@@ -3,7 +3,6 @@ title: Testing firmware logic on a laptop with a port
 summary: I put the timing, retry and sequence logic of a two-board hobby project behind a three-method interface, so most of it runs and breaks on my laptop instead of on a board.
 date: 2026-11-18
 tags: [firmware, testing, embedded, esp32]
-draft: true
 ---
 
 In my experience a lot of firmware bugs are logic bugs, not hardware ones. So put the logic behind a port, test it on your laptop, and keep the board for the parts only the board can break.
