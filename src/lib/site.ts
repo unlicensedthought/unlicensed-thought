@@ -6,7 +6,7 @@ export const site = {
     'AI evaluation and routing infrastructure, built by someone who came to it from industrial operations.',
   links: {
     github: 'https://github.com/unlicensedthought',
-    linkedin: 'https://www.linkedin.com/in/adam-scheurer'
+    linkedin: 'https://www.linkedin.com/in/adamscheurer/'
   }
 } as const;
 
