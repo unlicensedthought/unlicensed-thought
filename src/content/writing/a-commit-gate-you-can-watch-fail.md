@@ -31,7 +31,7 @@ Credential-shaped fixtures in those tests are assembled at runtime, and the gold
 
 The four misses are recorded as misses: nested command substitution, quotes inside the userinfo, a token literal split by adjacent quoting, and a header value produced by a command substitution so the word "authorization" never appears in the source. The selftest checks both directions. If a recorded catch stops being caught, that's a regression and it fails. If a recorded miss starts being caught, it fails too, until the corpus is updated in the same change. So the list of blind spots can't drift away from the code.
 
-**Mutants.** This is the part I added for the public repo. `scripts/mutants.json` lists 33 small breakages of the gate code, such as changing the AWS rule from 16 characters to 17, deleting the `\b` from the `sk-` rule, letting the `gate:allow-line` pragma hide a private term, or making `run` treat exit 2 as a pass. `scripts/mutants.sh` applies each one to a scratch copy and requires `go test ./...` to fail.
+**Mutants.** This is the part I added for the public repo. `scripts/mutants.json` lists 34 small breakages of the gate code, such as changing the AWS rule from 16 characters to 17, deleting the `\b` from the `sk-` rule, letting the `gate:allow-line` pragma hide a private term, or making `run` treat exit 2 as a pass. `scripts/mutants.sh` applies each one to a scratch copy and requires `go test ./...` to fail.
 
 ## What the mutants found
 
@@ -64,7 +64,7 @@ Before publishing I ran a security review over the public copy. It found holes t
 - **A repo config reaching outside the repo.** A repo's own leak config names its word list. A symlink could point that name at any file on the machine. The list must now resolve to a regular file inside the repo, capped at 1 MiB.
 - **Text that isn't UTF-8.** The secrets gate skipped any file that wasn't valid UTF-8, so a key in a Latin-1 file got through. Real binaries are still skipped. Other text is decoded with replacement characters and scanned.
 
-Each fix has a test I watched fail first, and a mutant that undoes it. That's where the other eight mutants come from. The set is 33 now, and all 33 are killed.
+Each fix has a test I watched fail first, and a mutant that undoes it. Those are eight of the newer mutants. The set is 34 now, and all 34 are killed.
 
 ## One change I made while porting
 
