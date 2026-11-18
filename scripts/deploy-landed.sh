@@ -23,6 +23,8 @@ full="$(git -C "$ROOT" rev-parse --verify -q "$sha^{commit}")" \
 tip="$(git -C "$ROOT" ls-remote "$REPO" refs/heads/hee-haw | cut -f1)"
 [ "$tip" = "$full" ] \
   || { echo "deploy-landed: $full is not trunk's tip on GitHub (tip is ${tip:-unreadable}); not deploying" >&2; exit 1; }
+[ -z "$(git -C "$ROOT" status --porcelain --untracked-files=all)" ] \
+  || { echo "deploy-landed: checkout has uncommitted or untracked files; only committed content ships" >&2; exit 1; }
 echo "deploy-landed: deploying $full (trunk was $before)"
 
 cd "$ROOT"
@@ -41,6 +43,10 @@ if [ -z "$cf_token" ] || [ -z "$cf_account" ]; then
 fi
 [ -n "$cf_token" ] && [ -n "$cf_account" ] \
   || { echo "deploy-landed: empty Cloudflare token or account id" >&2; exit 1; }
+# The build takes a while; a newer land may have reached trunk meanwhile. It deploys itself.
+tip="$(git -C "$ROOT" ls-remote "$REPO" refs/heads/hee-haw | cut -f1)"
+[ "$tip" = "$full" ] \
+  || { echo "deploy-landed: trunk moved to ${tip:-unreadable} during the build; not deploying $full" >&2; exit 1; }
 CLOUDFLARE_API_TOKEN="$cf_token" CLOUDFLARE_ACCOUNT_ID="$cf_account" ./node_modules/.bin/wrangler deploy
 unset cf_token cf_account
 
