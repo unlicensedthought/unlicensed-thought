@@ -19,7 +19,7 @@ export const projects = [
 ] as const;
 
 export const proof = [
-  { figure: '1,000+', text: 'locations supported on a national industrial weighing network' },
-  { figure: '15+', text: 'dealer-facing applications supported at John Deere' },
-  { figure: '95% → <5%', text: 'unmanaged devices, in a compliance-controlled computing pilot for 80+ Chevron field technicians on SCADA and Rockwell software' }
+  { figure: '$7.8M', text: 'revenue exposure surfaced by automating a 32.5-hour reconciliation down to a 2-minute refresh' },
+  { figure: '13 → 36', text: 'divisions on an operations data product built from ten hand-tracked sources' },
+  { figure: '95% → <5%', text: 'unmanaged devices across 80+ field technicians on SCADA and Rockwell automation software' }
 ] as const;

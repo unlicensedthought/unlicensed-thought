@@ -9,7 +9,7 @@ const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirect
 const files = walk(BUILD);
 const pages = files.filter((f) => f.endsWith('.html') && !f.endsWith('404.html'));
 
-for (const need of ['index.html', 'writing/index.html', 'work/index.html', 'about/index.html', '404.html', 'rss.xml', 'sitemap.xml', 'robots.txt', '_headers', 'og.png', 'favicon.svg', 'build.txt', 'logo.svg']) {
+for (const need of ['index.html', 'writing/index.html', 'portfolio/index.html', 'about/index.html', '404.html', 'rss.xml', 'sitemap.xml', 'robots.txt', '_headers', 'og.png', 'favicon.svg', 'build.txt', 'logo.svg']) {
   if (!existsSync(join(BUILD, need))) fail.push(`missing ${need}`);
 }
 for (const f of pages) {

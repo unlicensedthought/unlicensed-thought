@@ -32,7 +32,7 @@
       </article>
     {/each}
   </div>
-  <p><a href="/work/">How each one is evaluated →</a></p>
+  <p><a href="/portfolio/">The full portfolio →</a></p>
 </section>
 
 <section class="wrap">

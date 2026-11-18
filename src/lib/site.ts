@@ -12,7 +12,7 @@ export const site = {
 
 export const nav = [
   { href: '/writing/', label: 'Writing' },
-  { href: '/work/', label: 'Work' },
+  { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' }
 ] as const;
 
