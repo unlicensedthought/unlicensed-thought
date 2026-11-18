@@ -3,7 +3,7 @@
   import '$lib/styles/app.css';
   import { onNavigate } from '$app/navigation';
   import { page } from '$app/state';
-  import LogoHere from '$lib/LogoHere.svelte';
+  import Logo from '$lib/Logo.svelte';
   import { nav, site } from '$lib/site';
 
   let { children } = $props();
@@ -26,7 +26,7 @@
 <header class="top">
   <div class="wide bar">
     <a class="brand" href="/" aria-label="{site.name}, home">
-      <LogoHere size={32} label="{site.name} logo" />
+      <Logo size={40} label="{site.name} logo" />
       <span>{site.name}</span>
     </a>
     <nav aria-label="Primary">

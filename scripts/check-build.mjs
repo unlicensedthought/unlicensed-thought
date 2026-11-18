@@ -1,5 +1,5 @@
 // Post-build gate: every prerendered page carries the tags crawlers and link previews read,
-// drafts never ship, and the logo stand-ins stay 1:1.
+// drafts never ship, and every logo file stays 1:1.
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -28,8 +28,10 @@ for (const slug of drafts) {
   if (existsSync(join(BUILD, 'writing', slug))) fail.push(`draft ${slug} was built`);
   for (const feed of ['rss.xml', 'sitemap.xml']) if (readFileSync(join(BUILD, feed), 'utf8').includes(slug)) fail.push(`draft ${slug} is in ${feed}`);
 }
-const vb = readFileSync(join(BUILD, 'logo-here.svg'), 'utf8').match(/viewBox="0 0 (\d+) (\d+)"/);
-if (!vb || vb[1] !== vb[2]) fail.push('logo-here.svg is not 1:1');
+for (const f of ['logo.svg', 'favicon.svg']) {
+  const vb = readFileSync(join(BUILD, f), 'utf8').match(/viewBox="-?[\d.]+ -?[\d.]+ ([\d.]+) ([\d.]+)"/);
+  if (!vb || vb[1] !== vb[2]) fail.push(`${f} is not 1:1`);
+}
 
 if (fail.length) {
   console.error(`check-build: FAIL (${fail.length})\n  ${fail.join('\n  ')}`);
