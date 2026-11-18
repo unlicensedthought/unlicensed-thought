@@ -4,6 +4,7 @@
   import { onNavigate } from '$app/navigation';
   import { page } from '$app/state';
   import Logo from '$lib/Logo.svelte';
+  import BackToTop from '$lib/BackToTop.svelte';
   import { nav, site } from '$lib/site';
 
   let { children } = $props();
@@ -52,6 +53,8 @@
   </div>
 </footer>
 
+<BackToTop />
+
 <style>
   .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--ut-surface-bg) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--ut-border); view-transition-name: header; }
   .bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ut-space-4); min-height: var(--ut-nav-h); }
@@ -66,4 +69,5 @@
   .links { display: flex; gap: var(--ut-space-4); }
   @media (max-width: 30rem) { .brand span { display: none; } }
   .thought { color: var(--ut-accent); }
+  main:focus { outline: none; }
 </style>
