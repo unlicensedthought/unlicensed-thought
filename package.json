@@ -6,7 +6,7 @@
   "scripts": {
     "tokens": "node scripts/tokens.mjs",
     "dev": "npm run tokens && vite dev",
-    "build": "npm run tokens && vite build && node scripts/check-build.mjs",
+    "build": "npm run tokens && vite build && git rev-parse HEAD > build/build.txt && node scripts/check-build.mjs",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run",
