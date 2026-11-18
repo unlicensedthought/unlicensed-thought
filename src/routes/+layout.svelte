@@ -27,7 +27,7 @@
   <div class="wide bar">
     <a class="brand" href="/" aria-label="{site.name}, home">
       <Logo size={40} label="{site.name} logo" />
-      <span>{site.name}</span>
+      <span>{site.name.split(' ').slice(0, -1).join(' ')} <span class="thought">{site.name.split(' ').at(-1)}</span></span>
     </a>
     <nav aria-label="Primary">
       {#each nav as item}
@@ -65,4 +65,5 @@
   .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--ut-space-3); }
   .links { display: flex; gap: var(--ut-space-4); }
   @media (max-width: 30rem) { .brand span { display: none; } }
+  .thought { color: var(--ut-accent); }
 </style>
