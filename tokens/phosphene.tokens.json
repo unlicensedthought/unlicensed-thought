@@ -1,0 +1,187 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "primitive": {
+    "phosphene": {
+      "bg": {
+        "$value": "#04080c"
+      },
+      "surface": {
+        "$value": "#0a141c"
+      },
+      "surface-2": {
+        "$value": "#102230"
+      },
+      "text": {
+        "$value": "#cfe6f2"
+      },
+      "muted": {
+        "$value": "#7f9dac"
+      },
+      "secondary": {
+        "$value": "#9fb1ba"
+      },
+      "meta": {
+        "$value": "#728d9b"
+      },
+      "accent": {
+        "$value": "#36d2e6"
+      },
+      "accent-2": {
+        "$value": "#e6a836"
+      },
+      "border": {
+        "$value": "#173040"
+      }
+    }
+  },
+  "semantic": {
+    "phosphene": {
+      "surface-bg": "{primitive.phosphene.bg}",
+      "surface-card": "{primitive.phosphene.surface}",
+      "surface-raised": "{primitive.phosphene.surface-2}",
+      "surface-translucent": "{primitive.phosphene.surface}",
+      "surface-translucent-alpha": "0.90",
+      "border": "{primitive.phosphene.border}",
+      "text-body": "{primitive.phosphene.text}",
+      "text-secondary": "{primitive.phosphene.secondary}",
+      "text-label": "{primitive.phosphene.muted}",
+      "text-meta": "{primitive.phosphene.meta}",
+      "accent": "{primitive.phosphene.accent}",
+      "accent-bright": "{primitive.phosphene.accent}",
+      "accent-soft": "rgba(54,210,230,0.08)",
+      "accent-glow": "rgba(54,210,230,0.30)",
+      "focus": "{primitive.phosphene.accent-2}",
+      "note": "#48cbe8",
+      "react": "{primitive.phosphene.accent-2}",
+      "react-soft": "rgba(230,168,54,0.08)",
+      "caution": "#f07178",
+      "field-grid": "rgba(54,210,230,0.20)",
+      "field-glow-1": "rgba(54,210,230,0.30)",
+      "field-glow-2": "rgba(230,168,54,0.18)",
+      "field-opacity": "0.45",
+      "scrim": "rgba(0,0,0,0.45)",
+      "shadow": "rgba(4,8,12,0.45)"
+    }
+  },
+  "font": {
+    "$type": "fontFamily",
+    "display": {
+      "$value": [
+        "Jost",
+        "Jost Fallback",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "body": {
+      "$value": [
+        "Karla",
+        "Karla Fallback",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "prose": {
+      "$value": "{font.body}"
+    },
+    "narration": {
+      "$value": "{face.eb-garamond}"
+    },
+    "size-adjust": {
+      "$value": "0.50"
+    },
+    "display-cap": {
+      "$value": "0.70"
+    },
+    "display-transform": {
+      "$value": "none"
+    },
+    "display-tracking": {
+      "$value": "-0.02em"
+    }
+  },
+  "measure": {
+    "$type": "dimension",
+    "measure": {
+      "$value": "38rem"
+    },
+    "gutter": {
+      "$value": "clamp(12px, 2.5vw, 2rem)"
+    },
+    "content-w": {
+      "$value": "min(var(--piggy-measure), calc(100% - 2 * var(--piggy-gutter)))"
+    },
+    "target": {
+      "$value": "44px"
+    },
+    "target-min": {
+      "$value": "24px"
+    },
+    "control-h": {
+      "$value": "32px"
+    },
+    "pill-gap": {
+      "$value": "4px"
+    },
+    "header-pad": {
+      "$value": "2px"
+    },
+    "focus-w": {
+      "$value": "3px"
+    },
+    "focus-offset": {
+      "$value": "1px"
+    },
+    "nav-h": {
+      "$value": "60px"
+    },
+    "space-0-5": {
+      "$value": "2px"
+    },
+    "space-1": {
+      "$value": "4px"
+    },
+    "space-1-5": {
+      "$value": "6px"
+    },
+    "space-2": {
+      "$value": "8px"
+    },
+    "space-2-5": {
+      "$value": "10px"
+    },
+    "space-3": {
+      "$value": "12px"
+    },
+    "space-3-5": {
+      "$value": "14px"
+    },
+    "space-4": {
+      "$value": "16px"
+    },
+    "space-5": {
+      "$value": "20px"
+    },
+    "space-6": {
+      "$value": "24px"
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "xs": {
+      "$value": "4px"
+    },
+    "sm": {
+      "$value": "8px"
+    },
+    "md": {
+      "$value": "12px"
+    },
+    "lg": {
+      "$value": "16px"
+    },
+    "pill": {
+      "$value": "999px"
+    }
+  }
+}

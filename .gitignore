@@ -1,0 +1,7 @@
+node_modules/
+.svelte-kit/
+build/
+.wrangler/
+src/lib/styles/tokens.css
+.DS_Store
+.worktrees/
