@@ -2,6 +2,7 @@
 title: Six guards in one day that had never been shown to fail
 summary: A log of six checks in my own repos that looked present and had never been tested against bad input, and the one habit that exposed them.
 date: 2026-11-18
+written: August
 tags: [testing, ci, reliability, git]
 ---
 

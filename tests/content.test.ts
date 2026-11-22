@@ -11,6 +11,11 @@ describe('writing pipeline', () => {
     expect(p.html).toContain('<p>');
   });
 
+  it('keeps an optional written date as given', () => {
+    expect(parsePost('/x/a.md', post(`${ok}\nwritten: August`)).written).toBe('August');
+    expect(parsePost('/x/a.md', post(ok)).written).toBeUndefined();
+  });
+
   it('refuses a missing field, a bad date and a bad slug', () => {
     expect(() => parsePost('/x/a.md', post('title: T\ndate: 2026-11-18'))).toThrow(/summary/);
     expect(() => parsePost('/x/a.md', post('title: T\nsummary: S\ndate: 11/18/2026'))).toThrow(/YYYY-MM-DD/);

@@ -15,7 +15,7 @@
         <li>
           <a class="t" href="/writing/{post.slug}/">{post.title}</a>
           <p>{post.summary}</p>
-          <p class="meta"><time datetime={post.date}>{post.date}</time> · {post.minutes} min read{#if post.draft} · <strong>draft</strong>{/if}</p>
+          <p class="meta">{#if post.written}written {post.written}, published {/if}<time datetime={post.date}>{post.date}</time> · {post.minutes} min read{#if post.draft} · <strong>draft</strong>{/if}</p>
         </li>
       {/each}
     </ol>

@@ -10,7 +10,7 @@
   <p class="meta"><a href="/writing/">Writing</a></p>
   <h1>{post.title}</h1>
   <p class="meta">
-    <time datetime={post.date}>{post.date}</time>{#if post.updated} · updated <time datetime={post.updated}>{post.updated}</time>{/if}
+    {#if post.written}written {post.written}, published {/if}<time datetime={post.date}>{post.date}</time>{#if post.updated} · updated <time datetime={post.updated}>{post.updated}</time>{/if}
     · {post.minutes} min read{#if post.tags.length} · {post.tags.join(', ')}{/if}
   </p>
   <div class="prose">{@html post.html}</div>
