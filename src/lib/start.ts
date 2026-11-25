@@ -1,11 +1,12 @@
 import type { Post } from './content';
 
 type Entry = { slug: string; proves: string };
-type Group = { title: string; why: string; entries: Entry[] };
+type Group = { title: string; short: string; why: string; entries: Entry[] };
 
 export const groups: Group[] = [
   {
     title: 'Agents need a leash you can test',
+    short: 'Agents and gates',
     why: 'Agents write code faster than anyone can review it, so the checks around them have to be shown to fail on bad input, not just shown to exist.',
     entries: [
       { slug: 'six-guards-that-had-never-been-shown-to-fail', proves: 'Most of my own guards had never blocked anything, and one habit found that out.' },
@@ -17,6 +18,7 @@ export const groups: Group[] = [
   },
   {
     title: 'Routing models when providers fail',
+    short: 'Model routing',
     why: 'Running across many providers means planning for their failures, their prices and their quirks.',
     entries: [
       { slug: '3380-provider-failures-in-a-row-were-a-policy-failure', proves: 'A learning router needs a rule for a provider that is down, not just a score.' },
@@ -27,6 +29,7 @@ export const groups: Group[] = [
   },
   {
     title: 'Evals that refuse to pass by accident',
+    short: 'Evals',
     why: 'An evaluation that fails open is worse than none, because it is trusted.',
     entries: [
       { slug: 'how-goldenwatch-refuses-a-release', proves: 'Six quiet ways a golden-set check goes wrong, each refused.' },
@@ -38,6 +41,7 @@ export const groups: Group[] = [
   },
   {
     title: 'Heavy work on small hardware',
+    short: 'Small hardware',
     why: 'Running many agents on a few machines takes admission control, not hope.',
     entries: [
       { slug: 'admission-by-reservation-not-instantaneous-load', proves: 'Jobs reserve their peak before they start, so a machine is never overbooked.' },
@@ -47,6 +51,7 @@ export const groups: Group[] = [
   },
   {
     title: 'Keeping the surface safe',
+    short: 'Security',
     why: 'Data, access and dependencies are where a fast-moving system leaks.',
     entries: [
       { slug: 'redact-before-the-model-restore-after', proves: 'Personal data never reaches the model, and the test plants it to prove so.' },

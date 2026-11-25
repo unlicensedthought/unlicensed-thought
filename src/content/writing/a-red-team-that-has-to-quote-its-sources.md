@@ -1,7 +1,7 @@
 ---
 title: A red team that has to quote its sources
 summary: A layered red team over policy documents where every quote is checked against the source text, and one unsourced quote makes the run exit 1.
-date: 2026-11-18
+date: 2026-11-11
 tags: [llm-evaluation, citation, red-team, go]
 ---
 

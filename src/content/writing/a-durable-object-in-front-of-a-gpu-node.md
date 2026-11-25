@@ -1,7 +1,7 @@
 ---
 title: A Durable Object per GPU node, for a home Mac mini
 summary: How a Cloudflare Worker queues, preempts and recovers jobs for a home GPU box that sleeps, drops its tunnel and restarts whenever it likes.
-date: 2026-11-18
+date: 2026-10-11
 tags: [cloudflare-workers, durable-objects, job-queues, preemption]
 ---
 

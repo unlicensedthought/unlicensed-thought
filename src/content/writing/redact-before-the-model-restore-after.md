@@ -1,7 +1,7 @@
 ---
 title: Redact before the model, restore after
 summary: A reversible PII boundary around every model call in a chat app, tested by planting identifiers in the input and failing on any that show up in what leaves.
-date: 2026-11-18
+date: 2026-11-15
 tags: [privacy, llm-evaluation, ai-infrastructure, rust]
 ---
 

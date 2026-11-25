@@ -1,7 +1,7 @@
 ---
 title: Admission by reservation, not instantaneous load
 summary: A scheduler that checked current load let four jobs onto a Mac that then hit load 44, so I made every job reserve its peak before it starts.
-date: 2026-11-18
+date: 2026-11-16
 tags: [scheduling, agents, infrastructure, resource-governance]
 ---
 

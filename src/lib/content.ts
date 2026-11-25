@@ -7,7 +7,6 @@ export type Post = {
   summary: string;
   date: string;
   updated?: string;
-  written?: string;
   tags: string[];
   draft: boolean;
   minutes: number;
@@ -35,7 +34,6 @@ export function parsePost(file: string, raw: string): Post {
     summary: String(fm.summary),
     date,
     updated: fm.updated ? String(fm.updated) : undefined,
-    written: fm.written ? String(fm.written) : undefined,
     tags: Array.isArray(fm.tags) ? fm.tags.map(String) : [],
     draft: fm.draft === true,
     minutes: Math.max(1, Math.round(words / 230)),
@@ -50,7 +48,7 @@ export function collect(files: Record<string, string>, includeDrafts: boolean): 
     if (seen.has(p.slug)) throw new Error(`duplicate slug ${p.slug}`);
     seen.add(p.slug);
   }
-  return posts.filter((p) => includeDrafts || !p.draft).sort((a, b) => b.date.localeCompare(a.date));
+  return posts.filter((p) => includeDrafts || !p.draft).sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
 const files = import.meta.glob('/src/content/writing/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;

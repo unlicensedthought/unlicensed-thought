@@ -1,7 +1,7 @@
 ---
 title: Temperature silently does nothing on reasoning models, and the API will not tell you
 summary: A per-provider matrix of what temperature does while a model is thinking, and a small Rust library that sends, drops or refuses it and records which.
-date: 2026-11-18
+date: 2026-11-15
 tags: [llm, evals, api, rust]
 ---
 

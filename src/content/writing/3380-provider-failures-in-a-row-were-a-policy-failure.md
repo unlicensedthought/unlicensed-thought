@@ -1,7 +1,7 @@
 ---
 title: 3,380 consecutive provider failures were a policy failure, not a transient one
 summary: My model router kept sending traffic to a provider with no credit for 3,380 failures in a row, because a bandit treats failure as a score and not as a reason to stop.
-date: 2026-11-18
+date: 2026-04-01
 tags: [llm, routing, reliability, bandits]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: An on-device LLM as autocorrect, with a typed did-you-mean
 summary: I pointed Apple's on-device 3B model at autocorrect, forced its answer into a typed schema, and found out how little of that I've actually measured.
-date: 2026-11-18
+date: 2026-08-02
 tags: [swift, llm, on-device, privacy]
 ---
 

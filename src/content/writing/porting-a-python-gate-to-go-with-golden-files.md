@@ -1,7 +1,7 @@
 ---
 title: Porting a Python gate to Go with golden files, and why append-only ledgers merge cleanly
 summary: I replaced a Python checker for a decisions graph with a stdlib-only Go tool, and checked it against the old output byte for byte using recorded files.
-date: 2026-11-18
+date: 2026-11-15
 tags: [go, ci, testing, migration]
 ---
 

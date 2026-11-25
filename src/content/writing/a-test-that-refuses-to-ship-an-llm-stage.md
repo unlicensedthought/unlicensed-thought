@@ -1,7 +1,7 @@
 ---
 title: A test that refuses to ship an LLM stage nobody measured
 summary: I wired a stage evaluation into cargo test, so a registered LLM stage with no measured verdict, or a prompt edited since its measurement, fails the build.
-date: 2026-11-18
+date: 2026-11-15
 tags: [llm-evaluation, testing, ai-infrastructure]
 ---
 

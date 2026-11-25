@@ -1,7 +1,7 @@
 ---
 title: Three P0s that looked wired
 summary: An alert sender with no credentials, an auth check that returned true, and a secret rotator that returned constants, all found in one audit.
-date: 2026-11-18
+date: 2026-04-05
 tags: [security, secrets, code-review, auth]
 ---
 

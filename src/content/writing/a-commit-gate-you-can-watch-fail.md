@@ -1,7 +1,7 @@
 ---
 title: A commit gate you can watch fail
 summary: Three commit-time gates (secrets, private terms, tokens in git URLs) published with the evidence that each one blocks bad input, including the false positive that read SVG coordinates as phone numbers.
-date: 2026-11-18
+date: 2026-08-02
 tags: [guardrails, testing, git, go]
 ---
 

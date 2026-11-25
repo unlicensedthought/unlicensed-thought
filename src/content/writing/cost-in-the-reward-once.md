@@ -1,7 +1,7 @@
 ---
 title: Cost in the reward, once
 summary: armwright learns which model to send each kind of task to, from the outcomes of real calls. What a seeded 20,000-call simulation shows about where the cost knob really is.
-date: 2026-11-18
+date: 2026-10-19
 tags: [llm, routing, cost]
 ---
 

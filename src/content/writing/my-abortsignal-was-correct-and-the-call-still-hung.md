@@ -1,7 +1,7 @@
 ---
 title: My AbortSignal was correct and the call still hung for six hours
 summary: A model call hung twice for about six hours behind a correct AbortController, so I moved the deadline to a timer that does not depend on the signal.
-date: 2026-11-18
+date: 2026-09-02
 tags: [llm, reliability, timeouts, infrastructure]
 ---
 

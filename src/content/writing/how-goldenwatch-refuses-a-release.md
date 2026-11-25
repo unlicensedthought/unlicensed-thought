@@ -1,7 +1,7 @@
 ---
 title: How goldenwatch refuses a release
 summary: Most eval scripts fail open. goldenwatch names six ways a golden-set check goes quietly wrong, and refuses each one.
-date: 2026-11-18
+date: 2026-11-16
 tags: [evals, llm, release-gates]
 ---
 

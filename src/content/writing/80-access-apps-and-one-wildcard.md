@@ -1,7 +1,7 @@
 ---
 title: 80 Access apps and one wildcard
 summary: A Cloudflare Worker that provisions Zero Trust Access apps from a JSON config, never touches group membership, and audits the whole account for broad policies.
-date: 2026-11-18
+date: 2026-06-22
 tags: [security, cloudflare, infrastructure, authorization]
 ---
 

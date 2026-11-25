@@ -11,9 +11,13 @@ describe('writing pipeline', () => {
     expect(p.html).toContain('<p>');
   });
 
-  it('keeps an optional written date as given', () => {
-    expect(parsePost('/x/a.md', post(`${ok}\nwritten: August`)).written).toBe('August');
-    expect(parsePost('/x/a.md', post(ok)).written).toBeUndefined();
+  it('orders posts with the same date by title, so the list is stable', () => {
+    const files = {
+      '/w/b.md': post('title: Beta\nsummary: S\ndate: 2026-11-15'),
+      '/w/a.md': post('title: Alpha\nsummary: S\ndate: 2026-11-15'),
+      '/w/c.md': post('title: Gamma\nsummary: S\ndate: 2026-11-16')
+    };
+    expect(collect(files, false).map((p) => p.slug)).toEqual(['c', 'a', 'b']);
   });
 
   it('refuses a missing field, a bad date and a bad slug', () => {

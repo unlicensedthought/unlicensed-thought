@@ -1,7 +1,7 @@
 ---
 title: A merge queue that only fast-forwards trunk to a commit it verified
 summary: I rebuilt a small land queue so the commit trunk advances to is, by construction, the commit the checks ran on, and gave it a shadow mode to run before you trust it.
-date: 2026-11-18
+date: 2026-11-09
 tags: [ci-cd, git, merge-queue, releases]
 ---
 

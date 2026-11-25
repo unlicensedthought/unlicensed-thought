@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Each post is dated by when its subject was found or first built, from the source repo history; the `written` field is gone.
+- Writing page filters by the five Start here topics and sorts newest or oldest first.
+- Portfolio lists the other public repos, each with its write-up.
+- Home and portfolio lead with build achievements; career figures appear once, in their case studies.
+
 ## 0.1.0 - 2026-11-18
 
 - Front page and writing for unlicensedthought.com: SvelteKit with Svelte 5, every route prerendered at build time.

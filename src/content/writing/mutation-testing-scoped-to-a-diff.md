@@ -1,7 +1,7 @@
 ---
 title: Mutation testing scoped to a diff, and why survivors need a written reason
 summary: A mutation-testing tool that mutates only the functions a diff touched, runs every mutant in a throwaway sandbox, and refuses to ignore a survivor without a written reason.
-date: 2026-11-18
+date: 2026-10-29
 tags: [mutation-testing, testing, go, bash]
 ---
 
