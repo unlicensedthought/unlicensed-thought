@@ -1,4 +1,4 @@
-// Every figure here comes from a repo README or the career record. Nothing is estimated.
+// Every figure here comes from a repo README, a published post or the career record. Nothing is estimated.
 export type CaseStudy = {
   id: string;
   name: string;
@@ -75,9 +75,9 @@ export const capabilities = [
 ] as const;
 
 export const glance = [
-  { figure: '$7.8M', text: 'revenue exposure surfaced by a reconciliation I automated' },
-  { figure: '32.5 h → 2 min', text: 'manual reconciliation replaced by a refresh' },
-  { figure: '13 → 36', text: 'divisions on the operations data product as the program grew' },
+  { figure: '34 of 34', text: 'deliberate breakages of my commit gates, each caught by a failing test' },
+  { figure: '80 apps', text: 'sharing one domain wildcard, replaced by a provisioner that refuses to write one' },
+  { figure: '6 h, twice', text: 'a model call hung behind a correct AbortController; its deadline now runs on a timer that does not need the signal' },
   { figure: '6 named', text: 'ways an eval check goes quietly wrong, each refused by goldenwatch' }
 ] as const;
 

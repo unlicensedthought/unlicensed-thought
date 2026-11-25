@@ -2,7 +2,12 @@
   import Seo from '$lib/Seo.svelte';
   import { projects, proof } from '$lib/work';
   import { posts } from '$lib/content';
-  const recent = posts().slice(0, 3);
+  const all = posts();
+  const featured = new Set<string>(proof.map((p) => p.post));
+  for (const slug of featured) {
+    if (!all.some((post) => post.slug === slug)) throw new Error(`home proof links to missing post "${slug}"`);
+  }
+  const recent = all.filter((post) => !featured.has(post.slug)).slice(0, 3);
 </script>
 
 <Seo />
@@ -16,7 +21,7 @@
   </p>
   <ul class="proof" aria-label="Shipped work">
     {#each proof as p}
-      <li><strong>{p.figure}</strong> <span>{p.text}</span></li>
+      <li><strong>{p.figure}</strong> <span>{p.text}. <a href="/writing/{p.post}/">The write-up</a></span></li>
     {/each}
   </ul>
 </section>

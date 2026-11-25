@@ -18,8 +18,9 @@ export const projects = [
   }
 ] as const;
 
+// Each figure links to the post that holds its receipt; the home page leaves those posts out of its recent list.
 export const proof = [
-  { figure: '$7.8M', text: 'revenue exposure surfaced by automating a 32.5-hour reconciliation down to a 2-minute refresh' },
-  { figure: '13 → 36', text: 'divisions on an operations data product built from ten hand-tracked sources' },
-  { figure: '95% → <5%', text: 'unmanaged devices across 80+ field technicians on SCADA and Rockwell automation software' }
+  { figure: '3,380', post: '3380-provider-failures-in-a-row-were-a-policy-failure', text: 'failures in a row to a provider with no credit left, until "stop trying" moved out of the bandit score and into one routing gate' },
+  { figure: '6 in a day', post: 'six-guards-that-had-never-been-shown-to-fail', text: 'guards in my own repos that had never been shown to fail; now every gate gets a known-bad input before I trust it' },
+  { figure: '1 commit', post: 'a-merge-queue-that-only-ships-what-it-verified', text: 'built, verified and pushed by my merge queue, so trunk only moves to the commit its checks ran on' }
 ] as const;
