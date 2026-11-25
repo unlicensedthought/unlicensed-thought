@@ -5,6 +5,10 @@ date: 2026-09-02
 tags: [llm, reliability, timeouts, infrastructure]
 open:
   - "Add a per-chunk idle timer, so a long healthy stream isn't cut off by the whole-body limit."
+updates:
+  - date: 2026-12-08
+    closes: "Add a per-chunk idle timer, so a long healthy stream isn't cut off by the whole-body limit."
+    text: "llm-call-deadline 0.2.0 adds `guardedStream`. It reads a streamed body with an idle timer that restarts on every chunk, plus a total deadline. On either one it rejects first, with phase `idle` or `body`, and only then cancels the reader without waiting, so a reader that ignores cancel can't hold the caller. I checked the tests catch it by deleting the timer reset: 3 of 6 stream tests went red. [The change](https://github.com/unlicensedthought/llm-call-deadline/commit/00041044265ae77e9a186c5efbc0425fa3c947ce)."
 ---
 
 My `AbortController` timeout was correct, and a model call still hung for about six hours. Twice. The fix was to stop trusting the signal and race the call against a timer that doesn't need it.
