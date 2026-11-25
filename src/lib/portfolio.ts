@@ -166,6 +166,23 @@ export const cases: CaseStudy[] = [
   }
 ];
 
+// The rest of the public repos: each has a write-up, and the page fails the build if one names a post that does not exist.
+export const openSource = [
+  { repo: 'gate-kit', post: 'a-commit-gate-you-can-watch-fail', what: 'Commit gates you can watch fail: secrets, private terms and PII shapes, and credentials in git URLs, each with a selftest and mutants.' },
+  { repo: 'verified-merge-queue', post: 'a-merge-queue-that-only-ships-what-it-verified', what: 'A small merge queue that moves trunk only to a commit it has verified.' },
+  { repo: 'diff-mutation', post: 'mutation-testing-scoped-to-a-diff', what: 'Mutation testing scoped to the functions a diff touched, across bash, TypeScript and Go.' },
+  { repo: 'stage-eval-gate', post: 'a-test-that-refuses-to-ship-an-llm-stage', what: 'A test that fails the build for any LLM post-stage nobody measured.' },
+  { repo: 'llm-rewrite-cost-quality', post: 'caching-made-my-rewrite-pipeline-cost-more', what: 'Which model and cache setting gives an LLM rewrite pipeline the best quality per dollar, and whether to trust the quality number.' },
+  { repo: 'sampling-params-matrix', post: 'temperature-does-nothing-on-reasoning-models', what: 'Which sampling parameters a model actually honours in thinking mode, per provider: a Rust library and CLI.' },
+  { repo: 'llm-call-deadline', post: 'my-abortsignal-was-correct-and-the-call-still-hung', what: 'A wall-clock deadline for LLM and fetch calls that does not trust AbortSignal.' },
+  { repo: 'llm-pii-boundary', post: 'redact-before-the-model-restore-after', what: 'Take personal details out of text before it reaches a model, put them back in the answer, and test that nothing leaked.' },
+  { repo: 'agent-fleet-scheduler', post: 'admission-by-reservation-not-instantaneous-load', what: 'Admit jobs onto a host by what they will need at their peak, not by how busy the host is right now.' },
+  { repo: 'cf-access-provisioner', post: '80-access-apps-and-one-wildcard', what: 'A Cloudflare Worker that provisions hardened Access apps from JSON, idempotently, and audits the account for over-broad policies.' },
+  { repo: 'picomatch-extglob-guard', post: 'patching-a-redos-in-picomatch-without-forking-the-world', what: 'picomatch 4.0.7 with repeated extglobs refused, plus a sync check that fails the build if a vendored copy drifts.' },
+  { repo: 'decisions-dag-check', post: 'porting-a-python-gate-to-go-with-golden-files', what: 'Validator for a decisions DAG kept as per-node files, ported from Python to Go with byte-parity golden files.' },
+  { repo: 'embedded-port-testing-example', post: 'testing-firmware-logic-on-a-laptop-with-a-port', what: 'Put the logic of an embedded project behind a port and test it on your laptop.' }
+] as const;
+
 export const supporting = [
   {
     where: 'Chevron · SCADA and automation infrastructure (contract)',

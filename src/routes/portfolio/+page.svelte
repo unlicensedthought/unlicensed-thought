@@ -1,6 +1,11 @@
 <script lang="ts">
   import Seo from '$lib/Seo.svelte';
-  import { headline, expertise, glance, capabilities, cases, supporting, bridge } from '$lib/portfolio';
+  import { headline, expertise, glance, capabilities, cases, openSource, supporting, bridge } from '$lib/portfolio';
+  import { posts } from '$lib/content';
+  const titles = new Map(posts().map((p) => [p.slug, p.title]));
+  for (const o of openSource) {
+    if (!titles.has(o.post)) throw new Error(`open-source list links ${o.repo} to missing post "${o.post}"`);
+  }
 </script>
 
 <Seo
@@ -24,6 +29,7 @@
     {#each cases as c}
       <a href="#{c.id}">{c.name}</a>
     {/each}
+    <a href="#open-source">More open source</a>
     <a href="#capabilities">Capabilities</a>
     <a href="#before">Before this</a>
   </nav>
@@ -74,6 +80,20 @@
   </article>
 {/each}
 
+<section class="wrap" id="open-source">
+  <h2>More open source</h2>
+  <p class="meta">Smaller tools, each with a write-up of what it does and where it stops.</p>
+  <ul class="oss">
+    {#each openSource as o}
+      <li>
+        <a class="repo" href="https://github.com/unlicensedthought/{o.repo}">{o.repo}</a>
+        <p>{o.what}</p>
+        <p class="meta"><a href="/writing/{o.post}/">{titles.get(o.post)}</a></p>
+      </li>
+    {/each}
+  </ul>
+</section>
+
 <section class="wrap bridge">
   <h2>Why operations, then AI</h2>
   <p>{bridge}</p>
@@ -116,6 +136,11 @@
   dd { margin: var(--ut-space-1) 0 0; }
   dd ul, .support ul { margin: 0; padding-left: 1.2rem; }
   dd li, .support li { margin-bottom: var(--ut-space-1); }
+  #open-source { scroll-margin-top: var(--ut-space-5); }
+  .oss { list-style: none; padding: 0; margin: var(--ut-space-4) 0 0; display: grid; gap: var(--ut-space-3) var(--ut-space-5); grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+  .oss li { border-top: 1px solid var(--ut-border); padding-top: var(--ut-space-3); }
+  .oss .repo { font-family: var(--ut-font-display); font-size: 1.1rem; }
+  .oss p { margin: var(--ut-space-1) 0 0; }
   .bridge p { max-width: 40rem; color: var(--ut-text-secondary); }
   .support { margin-top: var(--ut-space-4); }
   .support h3 { font-size: 1.05rem; margin-bottom: var(--ut-space-1); }

@@ -60,14 +60,14 @@
   .bar { display: flex; align-items: center; justify-content: space-between; gap: var(--ut-space-4); min-height: var(--ut-nav-h); }
   .brand { display: inline-flex; align-items: center; gap: var(--ut-space-3); color: var(--ut-text-body); text-decoration: none; font-family: var(--ut-font-display); font-size: 1.1rem; min-height: var(--ut-target); }
   nav { display: flex; gap: var(--ut-space-1); }
-  nav a { color: var(--ut-text-secondary); text-decoration: none; padding: var(--ut-space-2) var(--ut-space-3); border-radius: var(--ut-radius-sm); min-height: var(--ut-target); display: inline-flex; align-items: center; }
+  nav a { color: var(--ut-text-secondary); text-decoration: none; padding: var(--ut-space-2) var(--ut-space-3); border-radius: var(--ut-radius-sm); min-height: var(--ut-target); display: inline-flex; align-items: center; white-space: nowrap; }
   nav a:hover { color: var(--ut-text-body); background: var(--ut-accent-soft); }
   nav a[aria-current='page'] { color: var(--ut-accent); }
   main { padding-block: var(--ut-space-6) calc(var(--ut-space-6) * 2); }
   .foot { border-top: 1px solid var(--ut-border); padding-block: var(--ut-space-6); }
   .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--ut-space-3); }
   .links { display: flex; gap: var(--ut-space-4); }
-  @media (max-width: 30rem) { .brand span { display: none; } }
+  @media (max-width: 30rem) { .brand span { display: none; } nav { gap: 0; } nav a { padding-inline: var(--ut-space-2); font-size: 0.95rem; } }
   .thought { color: var(--ut-accent); }
   main:focus { outline: none; }
 </style>
