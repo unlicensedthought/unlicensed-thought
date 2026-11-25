@@ -11,9 +11,9 @@ That's the whole story. The rest is how it works, what I got wrong on the way, a
 
 ## The problem
 
-Access is Cloudflare's gate in front of an app. You make an app, you give it a policy, and the policy says who gets in. In the dashboard that's a few clicks, so you do it a lot. The notes from my first setup say the manual path produced about 80 apps sharing an `email_domain` wildcard and some stray emails. I didn't plan that. It's what the manual path produced when nothing was checking.
+Access is Cloudflare's gate in front of an app. You make an app, you give it a policy, and the policy says who gets in. In the dashboard that's a few clicks, so you do it a lot. The notes from my first setup say the manual path produced about 80 apps sharing an `email_domain` wildcard and some stray emails. I didn't plan that. It's what the manual path hands you when nothing's checking.
 
-Why's a domain wildcard bad? It says "anyone with an address at this domain". That's fine until the domain isn't only you, or until you add the fortieth app and forget the wildcard came along. And once it's in 80 places, you don't have a policy. You have 80 policies that happen to match.
+Why's a domain wildcard bad? It says "anyone with an address at this domain", which is fine right up until the domain isn't only you, or until you add the fortieth app and forget the wildcard came along. And once it's in 80 places, you don't have a policy. You have 80 policies that happen to match.
 
 So I wanted three things:
 
@@ -50,7 +50,7 @@ The fix isn't a smarter reconcile. It's no reconcile. `ensureGroup` now does thr
 - If the caller expected members the live group doesn't have, log a drift line. Don't fix it.
 - If the group doesn't exist and there are no seed members, throw. A shared allowlist should be created on purpose, not conjured empty by a deploy.
 
-The reasoning is the same as the wildcard problem, just pointed the other way. The dashboard is the one place that knows who's in a group. Code that also writes membership is a second source of truth, and two sources of truth fight quietly. There are tests for each case, including one named for the lockout.
+The reasoning is the same as the wildcard problem, just pointed the other way. The dashboard is the one place that knows who's in a group. Code that also writes membership is a second source of truth, and two sources of truth fight in the dark. There are tests for each case, including one named for the lockout.
 
 ## The audit
 
@@ -63,7 +63,7 @@ The audit reads every app's allow policies and gives each app one of four verdic
 | `no-allow-policy` | Nothing lets anyone in |
 | `everyone` | An `everyone` rule |
 
-Each row also lists the extra emails and flags. It's the programmatic version of the manual sweep that found the 80 apps. You pass `expected` yourself. The source defaulted it to my own address, which is a bad thing to bake into code you're about to publish, and an empty default would flag every app. So now a missing `expected` is a 400.
+Each row also lists the extra emails and flags. It's the programmatic version of the manual sweep that found the 80 apps. You pass `expected` yourself. The source defaulted it to my own address, which is a lousy thing to bake into code you're about to publish, and an empty default would flag every app. So a missing `expected` is a 400 now.
 
 ## Membership, checked live
 
@@ -71,7 +71,7 @@ Consumer apps behind Access want to know whether a signed-in user is in a group.
 
 It holds no cache across requests. A comment in the file puts the load at a few to about 15 requests a day against a 1,200-per-5-minutes account limit, so a cache would buy nothing, and it would make the advertised `ttl_seconds: 60` a lie. A test builds a fresh resolver per request and goes red if someone hoists it.
 
-The rule I care about: if it can't decide, it doesn't say no. A group with a rule it doesn't understand (IP, country, email lists, IdP groups) is unresolvable, and the route answers 502 with no `memberships` field at all. A `false` looks exactly like a real deny, and it would quietly demote someone who belongs. A 502 tells the caller to revoke the session and ask again.
+The rule I care about: if it can't decide, it doesn't say no. A group with a rule it doesn't understand (IP, country, email lists, IdP groups) is unresolvable, and the route answers 502 with no `memberships` field at all. A `false` looks exactly like a real deny, and it would quietly demote someone who belongs. A 502 tells the caller to revoke the session and ask again. Honest, and a little rude.
 
 ## What I found extracting it
 

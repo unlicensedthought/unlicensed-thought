@@ -5,13 +5,13 @@ date: 2026-11-18
 tags: [cloudflare-workers, durable-objects, job-queues, preemption]
 ---
 
-A GPU you own is a worker that vanishes. It sleeps, loses its tunnel, restarts, and never tells you first. So the job system in front of it can't trust the box. It has to keep its promises anyway.
+A GPU you own is a worker that vanishes. It sleeps, loses its tunnel, restarts, and never tells you first. So can the job system in front of it trust the box? No. It still has to keep its promises.
 
-I built that system for a personal Workers app. One Durable Object per GPU node does the queueing, the preemption and the offline detection. D1 holds the truth. The node today is a Mac mini. This post is about the relay, not about what the jobs compute. The jobs are image and video processing and it doesn't matter which.
+I built that system for a personal Workers app. One Durable Object per GPU node does the queueing, the preemption and the offline detection. D1 holds the truth. The node today is a Mac mini. This post's about the relay, not about what the jobs compute. The jobs are image and video processing and it doesn't matter which.
 
 ## What's in the way
 
-Worker to the Mac is where it hurts. The Mac sits behind a Cloudflare Tunnel, and the Worker reaches it through a Workers VPC binding. There's no public hostname and no inbound port. Every call from the Worker can fail because the Mac is asleep, because cloudflared dropped its edge connections, or because it restarted.
+The hop from Worker to Mac is where it hurts. The Mac sits behind a Cloudflare Tunnel, and the Worker reaches it through a Workers VPC binding. There's no public hostname and no inbound port. Every call from the Worker can fail because the Mac is asleep, because cloudflared dropped its edge connections, or because it restarted.
 
 Three promises matter. If the box is down, the job waits. If it finishes while nobody's watching, the output still lands in storage. And one long job doesn't hold the GPU all afternoon.
 

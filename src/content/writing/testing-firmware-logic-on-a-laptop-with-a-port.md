@@ -13,7 +13,7 @@ I'll show what that looks like in a hobby project of mine, and I'll be straight 
 
 It's called Pale Pestis. Two wristbands, each with a pair of vibration motors driven together, buzz in alternation: left, then right, then left. Each one is a Seeed XIAO ESP32-S3, and they talk over ESP-NOW. The default pattern is a 1000 ms cycle with 300 ms on per band, and a 50 ms guard gap so the two never buzz at once.
 
-That sounds like nothing. It isn't. Two boards with two crystals that drift. A radio that drops packets. A button on either wrist. A master that can reboot while the slave keeps buzzing. Every one of those is a state machine problem, and none of them needs a motor to test.
+That sounds like nothing, right? It isn't. Two boards with two crystals that drift. A radio that drops packets. A button on either wrist. A master that can reboot while the slave keeps buzzing. Every one of those is a state machine problem, and none of them needs a motor to test.
 
 ## The problem
 
@@ -29,7 +29,7 @@ struct BandIO {
 };
 ```
 
-That's the core of the port; the original adds optional extras such as logging and a PWM amplitude path, and the example keeps just these three. The master and slave state machines take a `BandIO&` and touch nothing else. On the board, a thin adapter maps those to `millis`, `esp_now_send` and a GPIO pin. On the host, the adapter is a virtual clock, a radio I can make lossy, and a motor that just records on or off.
+That's the core of the port. The original adds optional extras such as logging and a PWM amplitude path, and the example keeps just these three. The master and slave state machines take a `BandIO&` and touch nothing else. On the board, a thin adapter maps those to `millis`, `esp_now_send` and a GPIO pin. On the host, the adapter is a virtual clock, a radio I can make lossy, and a motor that just records on or off.
 
 Same core. Different adapter.
 
