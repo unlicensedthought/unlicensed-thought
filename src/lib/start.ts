@@ -13,6 +13,7 @@ export const groups: Group[] = [
       { slug: 'a-commit-gate-you-can-watch-fail', proves: 'Each gate is published with the bad input it blocks.' },
       { slug: 'a-merge-queue-that-only-ships-what-it-verified', proves: 'Trunk only moves to the exact commit the checks ran on.' },
       { slug: 'two-gates-that-wanted-opposite-things', proves: 'When two gates disagree, run each one where it runs and bisect the input.' },
+      { slug: 'my-agent-transcripts-were-deleting-themselves', proves: "An agent's transcript is an audit log, and the default keeps it for 30 days." },
       { slug: 'three-p0s-that-looked-wired', proves: 'Code that looks wired up can be a stub that returns true.' },
       { slug: 'mutation-testing-scoped-to-a-diff', proves: 'A green suite is checked against the bugs it should catch.' }
     ]
@@ -63,12 +64,12 @@ export const groups: Group[] = [
   }
 ];
 
-export function resolve(all: Post[]) {
+export function resolve(all: Post[], held: Set<string> = new Set()) {
   const bySlug = new Map(all.map((p) => [p.slug, p]));
   const listed = new Set<string>();
   const out = groups.map((g) => ({
     ...g,
-    entries: g.entries.map((e) => {
+    entries: g.entries.filter((e) => !held.has(e.slug)).map((e) => {
       const post = bySlug.get(e.slug);
       if (!post) throw new Error(`start page lists unknown post ${e.slug}`);
       if (listed.has(e.slug)) throw new Error(`start page lists ${e.slug} twice`);

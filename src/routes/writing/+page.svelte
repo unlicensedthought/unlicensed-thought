@@ -1,9 +1,9 @@
 <script lang="ts">
   import Seo from '$lib/Seo.svelte';
-  import { posts } from '$lib/content';
+  import { posts, heldBack } from '$lib/content';
   import { resolve } from '$lib/start';
   const all = posts();
-  const topics = resolve(all).map((g) => ({ short: g.short, slugs: new Set(g.entries.map((e) => e.slug)) }));
+  const topics = resolve(all, heldBack()).map((g) => ({ short: g.short, slugs: new Set(g.entries.map((e) => e.slug)) }));
   let topic = $state<string | null>(null);
   let newestFirst = $state(true);
   const shown = $derived.by(() => {

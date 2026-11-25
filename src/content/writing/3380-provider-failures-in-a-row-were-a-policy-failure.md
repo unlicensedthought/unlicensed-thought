@@ -3,6 +3,9 @@ title: 3,380 consecutive provider failures were a policy failure, not a transien
 summary: My model router kept sending traffic to a provider with no credit for 3,380 failures in a row, because a bandit treats failure as a score and not as a reason to stop.
 date: 2026-04-01
 tags: [llm, routing, reliability, bandits]
+open:
+  - "Make the 50-failure rule an alert the router raises, not a rule in a note."
+  - "Re-enable a disabled provider by itself once its credit is back, behind the same gate."
 ---
 
 My model router sent 3,380 requests in a row to a provider that couldn't answer a single one. And the bandit's failure signal was accurate the whole time. Nothing turned it into a decision to stop, because a bandit turns failure into a score, and a score isn't a stop sign. You can't brake with a number.

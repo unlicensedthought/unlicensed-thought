@@ -1,8 +1,8 @@
 <script lang="ts">
   import Seo from '$lib/Seo.svelte';
-  import { posts } from '$lib/content';
+  import { posts, heldBack } from '$lib/content';
   import { resolve } from '$lib/start';
-  const groups = resolve(posts());
+  const groups = resolve(posts(), heldBack());
 </script>
 
 <Seo title="Start here" description="The write-ups in reading order, grouped by the problem each one solves, with one line on what each proves." />

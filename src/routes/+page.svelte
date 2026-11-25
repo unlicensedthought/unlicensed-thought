@@ -7,7 +7,7 @@
   for (const slug of featured) {
     if (!all.some((post) => post.slug === slug)) throw new Error(`home proof links to missing post "${slug}"`);
   }
-  const recent = all.filter((post) => !featured.has(post.slug)).slice(0, 3);
+  const recent = all.filter((post) => !featured.has(post.slug)).sort((a, b) => b.released.localeCompare(a.released)).slice(0, 3);
 </script>
 
 <Seo />

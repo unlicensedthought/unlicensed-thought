@@ -3,6 +3,10 @@ title: Six guards in one day that had never been shown to fail
 summary: A log of six checks in my own repos that looked present and had never been tested against bad input, and the one habit that exposed them.
 date: 2026-08-06
 tags: [testing, ci, reliability, git]
+open:
+  - "Cover the git helper line no mutant reaches."
+  - "Fix the post-deploy smoke test so checks 2 to 6 run."
+  - "Build the tool that runs every gate against a known-bad case, and test that tool the same way."
 ---
 
 A guard that looks present is worse than no guard. With no guard you know you're unprotected. With a guard that has never failed, you stop checking. And then you're unprotected anyway, only now you feel fine about it.

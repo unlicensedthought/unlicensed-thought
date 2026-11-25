@@ -3,6 +3,8 @@ title: Caching made my rewrite pipeline cost more, and the cheap-model verdict o
 summary: A three-judge panel scored 810 rewrite candidates; caching raised cost at no quality gain, and a fallback backend I hadn't noticed was skewing the model comparison.
 date: 2026-06-20
 tags: [llm-evaluation, cost, judge-panel, infrastructure]
+open:
+  - "Measure how far Q moves with a different seed."
 ---
 
 Caching made my rewrite pipeline more expensive, and a model that cost a third as much lost about a tenth of a point out of five. That was the headline from my v2 run. Half of it survived a second look, and the other half had a fallback backend hiding in it.

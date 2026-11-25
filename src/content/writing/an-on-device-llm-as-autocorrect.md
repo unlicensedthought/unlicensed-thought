@@ -3,6 +3,8 @@ title: An on-device LLM as autocorrect, with a typed did-you-mean
 summary: I pointed Apple's on-device 3B model at autocorrect, forced its answer into a typed schema, and found out how little of that I've actually measured.
 date: 2026-08-02
 tags: [swift, llm, on-device, privacy]
+open:
+  - "Test that the model keeps slang and profanity, not only that the prompt asks it to."
 ---
 
 Edit-distance autocorrect picks the nearest word. A language model can pick the word you meant. That's the whole bet behind hydratype, a keyboard I've been building that's designed to send the full sentence to Apple's on-device Foundation Models and take back a typed answer. Here's what's built, the one real measurement I have, and how much of the rest is still a plan.

@@ -3,6 +3,8 @@ title: A Durable Object per GPU node, for a home Mac mini
 summary: How a Cloudflare Worker queues, preempts and recovers jobs for a home GPU box that sleeps, drops its tunnel and restarts whenever it likes.
 date: 2026-10-11
 tags: [cloudflare-workers, durable-objects, job-queues, preemption]
+open:
+  - "Close the submit hole: a job the node accepted just before the object was evicted can be sent again."
 ---
 
 A GPU you own is a worker that vanishes. It sleeps, loses its tunnel, restarts, and never tells you first. So can the job system in front of it trust the box? No. It still has to keep its promises.

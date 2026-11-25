@@ -3,6 +3,8 @@ title: A red team that has to quote its sources
 summary: A layered red team over policy documents where every quote is checked against the source text, and one unsourced quote makes the run exit 1.
 date: 2026-11-11
 tags: [llm-evaluation, citation, red-team, go]
+open:
+  - "Measure how often real model output fails the quote check, not just the synthetic fixtures."
 ---
 
 An LLM that attacks a document will quote the document. Some of those quotes will be wrong. They'll be close, plausible, and not in the text. So I built a red team where every quote gets checked against the source, and a single missing quote fails the run.

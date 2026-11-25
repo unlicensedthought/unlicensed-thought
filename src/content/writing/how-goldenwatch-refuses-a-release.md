@@ -3,6 +3,9 @@ title: How goldenwatch refuses a release
 summary: Most eval scripts fail open. goldenwatch names six ways a golden-set check goes quietly wrong, and refuses each one.
 date: 2026-11-16
 tags: [evals, llm, release-gates]
+open:
+  - "Ship a built-in LLM judge as an option."
+  - "Run cases concurrently, with a limit."
 ---
 
 Golden-set checks sound simple. Keep a fixed set of cases, run your LLM feature against them, compare with last time, and block the release if the score has started to drop. So where's the trouble? Look at what the check does when something around it breaks. Most eval scripts fail open. They can't do the job and they report it done anyway.

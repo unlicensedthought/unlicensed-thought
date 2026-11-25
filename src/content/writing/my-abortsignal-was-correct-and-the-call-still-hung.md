@@ -3,6 +3,8 @@ title: My AbortSignal was correct and the call still hung for six hours
 summary: A model call hung twice for about six hours behind a correct AbortController, so I moved the deadline to a timer that does not depend on the signal.
 date: 2026-09-02
 tags: [llm, reliability, timeouts, infrastructure]
+open:
+  - "Add a per-chunk idle timer, so a long healthy stream isn't cut off by the whole-body limit."
 ---
 
 My `AbortController` timeout was correct, and a model call still hung for about six hours. Twice. The fix was to stop trusting the signal and race the call against a timer that doesn't need it.

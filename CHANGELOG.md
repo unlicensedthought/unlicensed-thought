@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Scheduled releases: posts and updates written ahead go out on their `publish` or update date, at most one new post a week, released by a daily job that redeploys trunk's tip.
+- Posts show what they still owe as "Still open", and dated "Updates" retire those items.
 - Each post is dated by when its subject was found or first built, from the source repo history; the `written` field is gone.
 - Writing page filters by the five Start here topics and sorts newest or oldest first.
 - Portfolio lists the other public repos, each with its write-up.
