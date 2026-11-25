@@ -12,6 +12,7 @@ export const groups: Group[] = [
       { slug: 'six-guards-that-had-never-been-shown-to-fail', proves: 'Most of my own guards had never blocked anything, and one habit found that out.' },
       { slug: 'a-commit-gate-you-can-watch-fail', proves: 'Each gate is published with the bad input it blocks.' },
       { slug: 'a-merge-queue-that-only-ships-what-it-verified', proves: 'Trunk only moves to the exact commit the checks ran on.' },
+      { slug: 'two-gates-that-wanted-opposite-things', proves: 'When two gates disagree, run each one where it runs and bisect the input.' },
       { slug: 'three-p0s-that-looked-wired', proves: 'Code that looks wired up can be a stub that returns true.' },
       { slug: 'mutation-testing-scoped-to-a-diff', proves: 'A green suite is checked against the bugs it should catch.' }
     ]
